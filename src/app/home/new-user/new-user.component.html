@@ -37,9 +37,9 @@
     />
     <app-messages
       *ngIf="
-      newUserForm.get('fullName)?.errors &&
-      newUserForm.get('fullName)?.touched
-    "
+        newUserForm.get('fullName')?.errors &&
+        newUserForm.get('fullName')?.touched
+      "
       message="Nome completo incorreto"
     ></app-messages>
   </div>
@@ -50,6 +50,22 @@
       placeholder="Usuário"
       formControlName="userName"
     />
+    <app-messages
+      *ngIf="newUserForm.get('userName')?.errors?.lower"
+      message="Usuário deve conter apenas letras minúsculas"
+    ></app-messages>
+    <app-messages
+      *ngIf="
+        newUserForm.get('userName')?.errors?.required &&
+        newUserForm.get('userName')?.touched
+      "
+      message="Nome de usuário é obrigatório"
+    ></app-messages>
+    <app-messages
+      *ngIf="newUserForm.get('userName')?.errors?.userExists"
+      message="Usuário existente"
+    >
+    </app-messages>
   </div>
   <div class="form-group mt-2">
     <input
@@ -58,8 +74,15 @@
       placeholder="Senha"
       formControlName="password"
     />
+    <app-messages
+      *ngIf="
+        newUserForm.get('password')?.errors?.required &&
+        newUserForm.get('password')?.touched
+      "
+      message="Senha é obrigatória"
+    ></app-messages>
   </div>
-  <button type="submit" class="btn btn-primary btn-block mt-2">
+  <button type="submit" class="btn btn-primary btn-block mt-4">
     Cadastrar
   </button>
 </form>

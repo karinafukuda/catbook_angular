@@ -8,7 +8,13 @@ import { Injectable } from '@angular/core';
 export class NewUserService {
   constructor(private http: HttpClient) {}
 
+  url: string = 'http://localhost:3000/';
+
   registerNewUser(newUser: NewUser) {
-    return this.http.post('http://localhost:3000/user/signup', newUser);
+    return this.http.post(`${this.url}user/signup`, newUser);
+  }
+
+  verifyUser(nameUser: string) {
+    return this.http.get(`${this.url}user/exists/${nameUser}`);
   }
 }

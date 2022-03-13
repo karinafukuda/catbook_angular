@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BaseUserService } from './base-user.service';
 import { NewUser } from './new-user';
 import { NewUserService } from './new-user.service';
+import { isLowerCase } from './setLowerCase.validator';
 
 @Component({
   selector: 'app-new-user',
@@ -13,16 +15,26 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private newUserService: NewUserService
+    private newUserService: NewUserService,
+    private baseUserService: BaseUserService
   ) {}
 
   ngOnInit(): void {
-    this.newUserForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      fullName: ['', [Validators.required, Validators.minLength(4)]],
-      userName: [''],
-      password: [''],
-    });
+    this.newUserForm = this.formBuilder.group(
+      {
+        email: ['', [Validators.required, Validators.email]],
+        fullName: ['', [Validators.required, Validators.minLength(4)]],
+        userName: [
+          '',
+          [Validators.required, isLowerCase],
+          [this.baseUserService.isBaseUser()],
+        ],
+        password: ['', [Validators.required]],
+      }
+      // {
+      //   validators: [userAndPasswordValidator],
+      // }
+    );
   }
 
   setRegister() {
