@@ -1,17 +1,63 @@
 <h4 class="text-center">Registre-se e mostre o seu pet ao mundo!</h4>
 
-<form action="" class="form mt-4">
+<form
+  action=""
+  class="form mt-4"
+  [formGroup]="newUserForm"
+  (submit)="setRegister()"
+>
   <div class="form-group mt-2">
-    <input type="text" class="form-control" placeholder="E-mail" />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="E-mail"
+      formControlName="email"
+    />
+    <app-messages
+      *ngIf="
+        newUserForm.get('email')?.errors?.required &&
+        newUserForm.get('email')?.touched
+      "
+      message="O campo e-mail é obrigatório"
+    ></app-messages>
+    <app-messages
+      *ngIf="
+        newUserForm.get('email')?.errors?.email &&
+        newUserForm.get('email')?.touched
+      "
+      message="E-mail no formato incorreto"
+    ></app-messages>
   </div>
   <div class="form-group mt-2">
-    <input type="text" class="form-control" placeholder="Nome completo" />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nome completo"
+      formControlName="fullName"
+    />
+    <app-messages
+      *ngIf="
+      newUserForm.get('fullName)?.errors &&
+      newUserForm.get('fullName)?.touched
+    "
+      message="Nome completo incorreto"
+    ></app-messages>
   </div>
   <div class="form-group mt-2">
-    <input type="text" class="form-control" placeholder="Usuário" />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Usuário"
+      formControlName="userName"
+    />
   </div>
   <div class="form-group mt-2">
-    <input type="password" class="form-control" placeholder="Senha" />
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Senha"
+      formControlName="password"
+    />
   </div>
   <button type="submit" class="btn btn-primary btn-block mt-2">
     Cadastrar
@@ -19,3 +65,5 @@
 </form>
 
 <p>Já é um usuário? <a [routerLink]="['']"> Faça login</a></p>
+
+<!-- Interrogação ponto ?. é do TS e simplifica para Se verdadeiro faça -->
