@@ -81,6 +81,10 @@
       "
       message="Senha é obrigatória"
     ></app-messages>
+    <app-messages
+      *ngIf="newUserForm.errors?.sameUserPassword"
+      message="Senha deve ser diferente do usuário"
+    ></app-messages>
   </div>
   <button type="submit" class="btn btn-primary btn-block mt-4">
     Cadastrar

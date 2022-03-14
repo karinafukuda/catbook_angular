@@ -16,6 +16,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Api
 
-- Created from teacher Alvaro - Alura.
+- Created by teacher Alvaro - Alura.
 
 Run `npm start` for a data server at api. Navigate to `http://localhost:3000/`
