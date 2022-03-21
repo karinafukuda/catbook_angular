@@ -4,6 +4,15 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ---
 
+## Technologies
+
+- Angular 12+
+- Typescript
+- Bootstrap
+- JWT-decode
+
+---
+
 ## Development server
 
 You'll need run `npm install` command in `api` folder and `catbook` folder.
