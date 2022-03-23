@@ -6,9 +6,10 @@ import { ListAnimalsComponent } from './list-animals/list-animals.component';
 import { AnimalComponent } from './animal/animal.component';
 import { CardModule } from '../components/card/card.module';
 import { GridPhotosAnimalsComponent } from './grid-photos-animals/grid-photos-animals.component';
+import { DetailAnimalComponent } from './detail-animal/detail-animal.component';
 
 @NgModule({
-  declarations: [ListAnimalsComponent, AnimalComponent, GridPhotosAnimalsComponent],
+  declarations: [ListAnimalsComponent, AnimalComponent, GridPhotosAnimalsComponent, DetailAnimalComponent],
   imports: [CommonModule, AnimalsRoutingModule, CardModule],
 })
 export class AnimalsModule {}

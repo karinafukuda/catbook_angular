@@ -55,6 +55,6 @@ export class NewUserComponent implements OnInit {
   }
 }
 
-//ngOnInit é executado a pós a construção de todos os elementos da classe
+//ngOnInit é executado após a construção de todos os elementos da classe
 //group é um método angular que forma um objeto
 //getRawValue retorna o estado dos objetos

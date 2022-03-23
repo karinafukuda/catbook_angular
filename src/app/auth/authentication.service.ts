@@ -29,7 +29,7 @@ export class AuthenticationService {
         }
       )
       .pipe(
-        tap((response) => {
+        tap((response: any) => {
           const authToken = response.headers.get('x-access-token') ?? '';
           this.userService.saveAToken(authToken);
         })
