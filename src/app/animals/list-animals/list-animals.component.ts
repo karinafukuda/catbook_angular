@@ -4,6 +4,7 @@ import { Animals } from '../animal';
 import { AnimalService } from '../animal.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-animals',
@@ -11,19 +12,15 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./list-animals.component.css'],
 })
 export class ListAnimalsComponent implements OnInit {
-  animals$!: Observable<Animals>;
+  animals!: Animals;
 
-  constructor(
-    private userService: UserService,
-    private animalsService: AnimalService
-  ) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.animals$ = this.userService.returnUser().pipe(
-      switchMap((user: any) => {
-        const userName = user.name ?? '';
-        return this.animalsService.listUser(userName);
-      })
-    );
+    this.activatedRoute.params.subscribe((param) => {
+      this.animals = this.activatedRoute.snapshot.data['animals'];
+    });
   }
 }
+
+//params é um observable
