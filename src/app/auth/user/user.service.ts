@@ -35,7 +35,7 @@ export class UserService {
     this.userSubject.next({});
   }
 
-  login() {
+  loged() {
     return this.tokenService.haveToken();
   }
 }

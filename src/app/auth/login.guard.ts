@@ -16,7 +16,7 @@ export class LoginGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.userService.login()) {
+    if (this.userService.loged()) {
       this.router.navigate(['animals']);
       return false;
     }

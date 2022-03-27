@@ -19,6 +19,7 @@ export class ListAnimalsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((param) => {
       this.animals = this.activatedRoute.snapshot.data['animals'];
+      return param;
     });
   }
 }

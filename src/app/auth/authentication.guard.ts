@@ -16,10 +16,10 @@ export class AuthenticationGuard implements CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (!this.userService.login()) {
-      return this.router.navigate(['']);
+    if (!this.userService.loged()) {
+      this.router.navigate(['']);
+      return false;
     }
-
     return true;
   }
 }
