@@ -37,4 +37,18 @@ export class AnimalService {
         })
       );
   }
+
+  upload(description: string, allowComments: boolean, file: File) {
+    const formData = new FormData();
+    formData.append('description', description);
+    formData.append('allowComments', allowComments ? 'true' : 'false');
+    formData.append('imageFile', file);
+
+    return this.http.post(`${API}/photos/upload`, FormData, {
+      observe: 'events',
+      reportProgress: true,
+    });
+  }
 }
+
+//upload ta envelopando o objeto para enviar os dados do FormData

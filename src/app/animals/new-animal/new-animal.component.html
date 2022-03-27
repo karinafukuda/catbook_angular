@@ -1,0 +1,62 @@
+<div class="container">
+  <form [formGroup]="formAnimal" class="row" (submit)="upload()">
+    <div class="col-md-6 text-center">
+      <div class="form-group" *ngIf="!preview; else previewImage">
+        <button type="button" (click)="fileInput.click()" class="btn btn-dark">
+          <i class="fa fa-image fa-4x align-middle"></i>
+        </button>
+        <input
+          #fileInput
+          type="file"
+          hidden
+          formControlName="file"
+          accept="image/*"
+          (change)="saveFile($event.target)"
+        />
+        <app-messages
+          message="Por favor, selecione a foto"
+          *ngIf="!!formAnimal.get('file')?.errors?.required"
+        ></app-messages>
+      </div>
+      <ng-template #previewImage>
+        <app-animal [url]="preview" title="Preview"></app-animal>
+      </ng-template>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <text-area
+          formControlName="description"
+          class="form-control form-control-sm"
+          placeholder="Descrição do animal"
+        ></text-area>
+        <app-messages
+          message="Tamanho máximo de 300 caracteres"
+          *ngIf="!!formAnimal.get('file')?.errors?.maxLength"
+        ></app-messages>
+      </div>
+      <div class="form-group">
+        <label class="text-muted"
+          >Permite comentários
+          <input type="checkbox" formControlName="allowComments" />
+        </label>
+      </div>
+      <div class="" *ngIf="!completePercentage; else uploadDiv">
+        <button
+          [disabled]="formAnimal.invalid"
+          type="submit"
+          class="btn btn-primary btn-block m-2"
+        >
+          Enviar
+        </button>
+        <a [routerLink]="['/animals']" class="btn btn-secondary btn-block m-2"
+          >Cancelar</a
+        >
+      </div>
+      <ng-template #uploadDiv>
+        <div class="text-center display-4">
+          Percentual de upload {{ completePercentage }} %
+        </div>
+      </ng-template>
+    </div>
+  </form>
+</div>
